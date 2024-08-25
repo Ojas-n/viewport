@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video List with Access Control</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #videoList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #videoList li {
+            margin: 10px 0;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input {
+            width: 300px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        iframe {
+            width: 560px;
+            height: 315px;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Video List with Access Control</h1>
+    
+    <div>
+        <h2>View Video</h2>
+        <input type="text" id="viewAccessCode" placeholder="Enter Access Code">
+        <button onclick="viewVideo()">View Video</button>
+    </div>
+    
+    <div id="videoContainer"></div>
+
+    <script>
+        // Define your static video list here
+        const videoDatabase = {
+            "vid1": "KpVeX6Wz-lc?si=sbrBdOp0m0if2d-q",
+            "tuj": "r6qaHAaLjqc?si=BjRfgK-lBzYtPLvI"
+            // Add more access codes and video IDs here
+        };
+
+        function viewVideo() {
+            const viewAccessCode = document.getElementById('viewAccessCode').value;
+            const videoID = videoDatabase[viewAccessCode];
+            const videoContainer = document.getElementById('videoContainer');
+
+            if (videoID) {
+                videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoID}" allowfullscreen></iframe>`;
+            } else {
+                videoContainer.innerHTML = '<p style="color: red;">Invalid access code.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
